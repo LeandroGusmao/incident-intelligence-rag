@@ -1,8 +1,7 @@
 import { serve } from "@hono/node-server";
+import { env } from "../infra/config/env.ts";
 import { createApp } from "./app.ts";
 
-const port = Number(process.env.PORT ?? 3000);
-
-serve({ fetch: createApp().fetch, port }, (info) => {
+serve({ fetch: createApp().fetch, port: env.PORT }, (info) => {
   console.log(`Listening on http://localhost:${info.port}`);
 });
