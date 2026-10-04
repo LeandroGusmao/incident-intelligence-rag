@@ -62,6 +62,7 @@ Requires Node.js 24 or later.
 ```bash
 npm install
 cp .env.example .env
+docker compose up -d   # Postgres + pgvector on localhost:5432 (not used by the app yet)
 npm run dev            # http://localhost:3000/health, /openapi.json and /docs (Swagger UI)
 npm run check          # typecheck, lint, format check and tests
 ```
