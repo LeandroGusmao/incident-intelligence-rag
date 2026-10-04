@@ -10,3 +10,14 @@ updates:
     groups:
       github-actions:
         patterns: ["*"]
+
+  # Keeps the digest-pinned image in docker-compose.yml up to date.
+  - package-ecosystem: docker-compose
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      docker-compose:
+        patterns: ["*"]

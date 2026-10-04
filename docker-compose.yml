@@ -1,0 +1,32 @@
+services:
+  postgres:
+    # Tag plus digest: the tag doesn't fix the Postgres minor, and Dependabot
+    # bumps the digest when the image is rebuilt.
+    image: pgvector/pgvector:0.8.7-pg18-trixie@sha256:9d9c930220cb9bf2f956d10a8f909cf9973d9672ca0278aef2c1e6facccad2e0
+    container_name: incident-intelligence-postgres
+    restart: unless-stopped
+    # Bind to localhost only: never expose the dev DB to the LAN.
+    ports:
+      - "127.0.0.1:5432:5432"
+    environment:
+      POSTGRES_USER: incident_intelligence
+      POSTGRES_PASSWORD: incident_intelligence_local_dev
+      POSTGRES_DB: incident_intelligence
+    shm_size: 256mb
+    # PG18+ expects a single mount at /var/lib/postgresql (data goes in a
+    # versioned subdirectory).
+    volumes:
+      - postgres_data:/var/lib/postgresql
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "pg_isready -U incident_intelligence -d incident_intelligence",
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+volumes:
+  postgres_data:
