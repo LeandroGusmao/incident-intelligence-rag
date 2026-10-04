@@ -1,2 +1,10 @@
 # Local-only docs
 docs/incident-intelligence-project-proposal.md
+
+# Dependencies and build output
+node_modules/
+dist/
+coverage/
+
+# Local environment
+.env
