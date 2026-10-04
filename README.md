@@ -61,7 +61,7 @@ Requires Node.js 24 or later.
 
 ```bash
 npm install
-npm run dev     # http://localhost:3000/health and /openapi.json
+npm run dev     # http://localhost:3000/health, /openapi.json and /docs (Swagger UI)
 npm run check   # typecheck, lint, format check and tests
 ```
 
