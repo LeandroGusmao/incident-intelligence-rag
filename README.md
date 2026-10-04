@@ -1,5 +1,7 @@
 # incident-intelligence-rag
 
+[![CI](https://github.com/LeandroGusmao/incident-intelligence-rag/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/LeandroGusmao/incident-intelligence-rag/actions/workflows/ci.yml)
+
 > 🚧 **Under construction.** The project is in its foundation phase: the API
 > skeleton and tooling exist, but it doesn't retrieve or answer anything yet.
 
