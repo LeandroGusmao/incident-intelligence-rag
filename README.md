@@ -52,8 +52,9 @@ on UI or feature count.
 
 ## Tech stack
 
-Node.js 24 · TypeScript 7 · Hono with `@hono/zod-openapi` · Jest · Oxlint ·
-Prettier. Planned: PostgreSQL + pgvector (via `pg`, no ORM) and the OpenAI API.
+Node.js 24 · TypeScript 7 · Hono with `@hono/zod-openapi` · PostgreSQL 18 +
+pgvector (via `pg`, no ORM, plain SQL migrations) · Jest · Oxlint · Prettier.
+Planned: the OpenAI API.
 
 ## Running what exists
 
@@ -62,10 +63,20 @@ Requires Node.js 24 or later.
 ```bash
 npm install
 cp .env.example .env
-docker compose up -d   # Postgres + pgvector on localhost:5432 (not used by the app yet)
+docker compose up -d   # Postgres + pgvector on localhost:5432
+npm run db:migrate     # creates the schema (sources, chunks)
 npm run dev            # http://localhost:3000/health, /openapi.json and /docs (Swagger UI)
 npm run check          # typecheck, lint, format check and tests
 ```
+
+### Database migrations
+
+The schema lives in plain SQL files in [`migrations/`](migrations), named
+`NNNN_description.sql` and applied in order by a small runner
+(`src/infra/database/migrator.ts`). A run is a single transaction: if any file
+fails, nothing is applied. An applied migration is never edited. The runner
+stores each file's checksum and refuses to run if one changes, so every schema
+change is a new file.
 
 ## License
 
