@@ -4,6 +4,7 @@
 export default {
   testEnvironment: "node",
   testMatch: ["<rootDir>/tests/**/*.test.ts"],
+  setupFiles: ["<rootDir>/tests/setup/env.ts"],
   extensionsToTreatAsEsm: [".ts"],
   transform: {
     "^.+\\.ts$": [

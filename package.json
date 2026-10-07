@@ -11,6 +11,7 @@
     "dev": "node --watch --env-file-if-exists=.env src/api/server.ts",
     "build": "node -e \"fs.rmSync('dist', { recursive: true, force: true })\" && tsc -p tsconfig.build.json",
     "start": "node dist/api/server.js",
+    "db:migrate": "node --env-file-if-exists=.env src/main/migrate.ts",
     "typecheck": "tsc --noEmit",
     "lint": "oxlint --type-aware",
     "format": "prettier --write .",
@@ -23,6 +24,7 @@
     "@hono/swagger-ui": "^0.6.1",
     "@hono/zod-openapi": "^1.6.3",
     "hono": "^4.13.12",
+    "pg": "^8.23.1",
     "zod": "^4.6.5"
   },
   "devDependencies": {
@@ -30,6 +32,7 @@
     "@swc/core": "^1.16.13",
     "@swc/jest": "^0.2.39",
     "@types/node": "^24.19.1",
+    "@types/pg": "^8.23.1",
     "jest": "^30.5.2",
     "oxlint": "^1.86.0",
     "oxlint-tsgolint": "^7.0.2003",

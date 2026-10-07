@@ -9,6 +9,7 @@ const MAX_PORT = 65_535;
 
 const envSchema = z.object({
   PORT: z.coerce.number().int().min(1).max(MAX_PORT).default(DEFAULT_PORT),
+  DATABASE_URL: z.url({ protocol: /^postgres(ql)?$/ }),
 });
 
 export type Env = z.infer<typeof envSchema>;
@@ -24,7 +25,6 @@ export function parseEnv(source: unknown) {
 const parsed = parseEnv(process.env);
 
 if (!parsed.success) {
-  // Before any logger exists: the process must not start with invalid env.
   console.error("Invalid environment variables:\n");
   console.error(z.prettifyError(parsed.error));
   process.exit(1);
