@@ -1,7 +1,7 @@
 import { fileURLToPath } from "node:url";
 import { Pool } from "pg";
 import { migrate } from "../../../src/infra/database/migrator.ts";
-import { TEST_DATABASE_URL } from "../../setup/test-database-url.ts";
+import { TEST_DATABASE_URL } from "./test-database-url.ts";
 
 const MIGRATIONS_DIR = fileURLToPath(
   new URL("../../../migrations/", import.meta.url),

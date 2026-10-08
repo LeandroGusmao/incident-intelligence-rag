@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import { createApp } from "../../src/api/app.ts";
+import { createApp } from "./app.ts";
 
 describe("GET /docs", () => {
   it("serves a Swagger UI page that loads the spec from /openapi.json", async () => {

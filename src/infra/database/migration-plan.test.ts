@@ -1,8 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import {
-  MigrationError,
-  planMigrations,
-} from "../../../src/infra/database/migration-plan.ts";
+import { MigrationError, planMigrations } from "./migration-plan.ts";
 
 function migration(name: string, checksum = `sha-${name}`) {
   return { name, checksum };
