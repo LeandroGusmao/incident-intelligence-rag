@@ -63,10 +63,22 @@ Requires Node.js 24 or later.
 ```bash
 npm install
 cp .env.example .env
-docker compose up -d   # Postgres + pgvector on localhost:5432
+docker compose up -d   # Postgres + pgvector: dev on localhost:5432, tests on 5433
 npm run db:migrate     # creates the schema (sources, chunks)
 npm run dev            # http://localhost:3000/health, /openapi.json and /docs (Swagger UI)
-npm run check          # typecheck, lint, format check and tests
+npm run check          # typecheck, lint, format check and unit tests
+```
+
+### Tests
+
+Unit tests need nothing running. Integration tests run against their own
+Postgres (`postgres-test` in `docker-compose.yml`, data kept in RAM), which the
+suite resets and migrates with the same files before every run:
+
+```bash
+npm run test:unit
+docker compose up -d --wait postgres-test
+npm run test:integration
 ```
 
 ### Database migrations

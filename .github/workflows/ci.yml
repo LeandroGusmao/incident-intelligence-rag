@@ -28,3 +28,7 @@ jobs:
           cache: npm
       - run: npm ci --ignore-scripts
       - run: npm run check
+      # From docker-compose.yml, not a `services:` block: one image ref to pin,
+      # and Dependabot's digest bumps get run through the integration tests.
+      - run: docker compose up -d --wait postgres-test
+      - run: npm run test:integration
