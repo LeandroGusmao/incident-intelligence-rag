@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, jest } from "@jest/globals";
-import { env } from "../../../src/infra/config/env.ts";
-import { createPool } from "../../../src/infra/database/client.ts";
+import { env } from "../config/env.ts";
+import { createPool } from "./client.ts";
 
 describe("createPool", () => {
   afterEach(() => {

@@ -1,8 +1,11 @@
 // Tests run as native ESM (the `jest` script passes --experimental-vm-modules).
 // SWC only strips types; `npm run typecheck` is what checks them.
+const INTEGRATION_DIR = "<rootDir>/tests/integration";
+
 const base = {
   testEnvironment: "node",
-  setupFiles: ["<rootDir>/tests/setup/env.ts"],
+  // Unit tests need it too: anything that imports env.ts needs DATABASE_URL.
+  setupFiles: [`${INTEGRATION_DIR}/setup/env.ts`],
   extensionsToTreatAsEsm: [".ts"],
   transform: {
     "^.+\\.ts$": [
@@ -12,16 +15,13 @@ const base = {
   },
 };
 
-const INTEGRATION_DIR = "<rootDir>/tests/integration";
-
 /** @type {import('jest').Config} */
 export default {
   projects: [
     {
       ...base,
       displayName: "unit",
-      testMatch: ["<rootDir>/tests/**/*.test.ts"],
-      testPathIgnorePatterns: ["/node_modules/", `${INTEGRATION_DIR}/`],
+      testMatch: ["<rootDir>/src/**/*.test.ts"],
     },
     {
       ...base,

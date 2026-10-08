@@ -1,11 +1,9 @@
 import { spawnSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "@jest/globals";
-import { DEFAULT_PORT, parseEnv } from "../../../src/infra/config/env.ts";
+import { DEFAULT_PORT, parseEnv } from "./env.ts";
 
-const ENV_MODULE = fileURLToPath(
-  new URL("../../../src/infra/config/env.ts", import.meta.url),
-);
+const ENV_MODULE = fileURLToPath(new URL("./env.ts", import.meta.url));
 
 const DATABASE_URL = "postgres://user:pass@localhost:5432/app";
 const MINIMAL_ENV = { DATABASE_URL };

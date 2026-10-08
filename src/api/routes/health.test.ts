@@ -1,5 +1,5 @@
 import { describe, expect, it } from "@jest/globals";
-import { createApp } from "../../src/api/app.ts";
+import { createApp } from "../app.ts";
 
 describe("GET /health", () => {
   it("responds 200 with a JSON status ok", async () => {
